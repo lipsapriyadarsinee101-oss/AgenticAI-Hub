@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agenticai-hub"
+version = "0.1.0"
+description = "An agentic research lab with interchangeable framework adapters"
+requires-python = ">=3.11,<3.14"
+dependencies = []
+
+[project.optional-dependencies]
+graph = ["langchain>=1,<2", "langgraph>=1,<2", "langchain-ollama>=1,<2"]
+crew = ["crewai[litellm]>=1,<2"]
+rag = ["llama-index-core>=0.14,<0.15", "llama-index-llms-ollama>=0.9,<1", "llama-index-embeddings-ollama>=0.8,<1"]
+smol = ["smolagents[litellm]>=1.20,<2"]
+tracing = ["langfuse>=5,<6"]
+
+[project.scripts]
+agentic-hub = "agentic_hub.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["agentic_hub*"]
+
+[tool.setuptools.package-data]
+agentic_hub = ["knowledge/*.md"]
